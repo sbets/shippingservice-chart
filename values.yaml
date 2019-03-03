@@ -1,0 +1,27 @@
+## Images
+image:
+  registry: gcr.io
+  repository: google-samples/microservices-demo/shippingservice
+  tag: v0.1.0
+  pullPolicy: Always
+  port: 50051
+  cmd: ["/bin/grpc_health_probe", "-addr=:50051"]
+
+global:
+  imageRegistry: gcr.io
+  name: shippingservice
+
+resources:
+  requests:
+    cpu: 100m
+    memory: 64Mi
+  limits:
+    cpu: 200m
+    memory: 128Mi
+
+service:
+  type: ClusterIP
+  ports:
+    - name: grpc
+      port: 50051
+      targetPort: 50051
